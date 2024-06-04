@@ -1,0 +1,22 @@
+version: "3.7"
+volumes:
+  dbdata:
+services:
+  db:
+    image: mysql:8.3.0
+    container_name: smart_sh_db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: smart_sh
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+    networks:
+      - smart_sh_api
+networks:
+  smart_sh_api:
+    driver: bridge
